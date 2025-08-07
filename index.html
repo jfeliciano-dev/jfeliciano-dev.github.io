@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wano Arc Progress</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0e0e0e;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      color: #ffcc00;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+
+    .progress-container {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 20px;
+    }
+
+    .progress-label {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .progress-bar {
+      background-color: #333;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 30px;
+      background-color: #ff0000;
+      width: 0%;
+      text-align: center;
+      line-height: 30px;
+      color: #fff;
+      font-weight: bold;
+      transition: width 0.5s;
+    }
+
+    .episode-info {
+      margin-top: 20px;
+      font-size: 1.2em;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>One Piece: Wano Arc Progress</h1>
+
+  <div class="progress-container">
+    <div class="progress-label">Watching Episode <span id="current-ep">950</span> of 1085</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-bar">0%</div>
+    </div>
+    <div class="episode-info">Wano Arc: Episodes 890–1085</div>
+  </div>
+
+  <footer>Last updated: August 7, 2025</footer>
+
+  <script>
+    const startEp = 890;
+    const endEp = 1085;
+    const currentEp = 950; // 👈 CHANGE THIS to your current episode
+
+    const progress = ((currentEp - startEp) / (endEp - startEp)) * 100;
+    const progressBar = document.getElementById('progress-bar');
+    const currentEpSpan = document.getElementById('current-ep');
+
+    progressBar.style.width = `${progress}%`;
+    progressBar.textContent = `${Math.floor(progress)}%`;
+    currentEpSpan.textContent = currentEp;
+  </script>
+
+</body>
+</html>
