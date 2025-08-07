@@ -84,7 +84,40 @@
     <div class="episode-info">Wano Arc (One Pace): Episodes 1–95</div>
   </div>
 
-  <footer>Last updated: August 7, 2025</footer>
+    <footer id="last-updated">Last updated: </footer>
+
+  <script>
+    const startEp = 1;
+    const endEp = 95;
+    const currentEp = 4; // 👈 CHANGE THIS when you make progress
+
+    const progress = ((currentEp - startEp) / (endEp - startEp)) * 100;
+    const progressBar = document.getElementById('progress-bar');
+    const currentEpSpan = document.getElementById('current-ep');
+
+    progressBar.style.width = `${progress}%`;
+    progressBar.textContent = `${Math.floor(progress)}%`;
+    currentEpSpan.textContent = currentEp;
+
+    // Update Last Updated Timestamp in 12-hour EST format
+    function formatDateEST(date) {
+      const options = {
+        timeZone: 'America/New_York',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+        hour12: true
+      };
+      return new Intl.DateTimeFormat('en-US', options).format(date) + ' EST';
+    }
+
+    const footer = document.getElementById('last-updated');
+    const now = new Date();
+    footer.textContent = `Last updated: ${formatDateEST(now)}`;
+  </script>
+
 
   <script>
     const startEp = 1;
