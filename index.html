@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Wano Arc (One Pace) Progress</title>
+  <title>Wano Arc Progress - One Pace</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -18,6 +18,7 @@
     h1 {
       color: #ffcc00;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+      text-align: center;
     }
 
     .wano-image {
@@ -62,6 +63,31 @@
       text-align: center;
     }
 
+    .audio-player {
+      margin-top: 40px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+    }
+
+    .audio-player button {
+      background-color: #ff0000;
+      color: #fff;
+      border: none;
+      padding: 6px 14px;
+      font-size: 1em;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .audio-player input[type="range"] {
+      width: 150px;
+    }
+
     footer {
       margin-top: 40px;
       font-size: 0.9em;
@@ -71,11 +97,12 @@
 </head>
 <body>
 
-  <h1>One Pace: Wano Arc Progress</h1>
+  <h1>One Piece: Wano Arc Progress (One Pace)</h1>
 
-  <!-- 👇 Your Whitebeard image -->
+  <!-- Whitebeard Image -->
   <img src="8644a017-77e7-4fcd-adef-79ba3025cab1.png" alt="Whitebeard - The One Piece is Real" class="wano-image" />
 
+  <!-- Progress Bar -->
   <div class="progress-container">
     <div class="progress-label">Watching Episode <span id="current-ep">4</span> of 95</div>
     <div class="progress-bar">
@@ -84,12 +111,24 @@
     <div class="episode-info">Wano Arc (One Pace): Episodes 1–95</div>
   </div>
 
-    <footer id="last-updated">Last updated: </footer>
+  <!-- Audio Player -->
+  <div class="audio-player">
+    <button id="play-pause">Play</button>
+    <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5" />
+    <audio id="wano-audio" preload="auto">
+      <source src="over-the-top.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <!-- Footer -->
+  <footer id="last-updated">Last updated: </footer>
 
   <script>
+    // Episode progress
     const startEp = 1;
     const endEp = 95;
-    const currentEp = 4; // 👈 CHANGE THIS when you make progress
+    const currentEp = 4; // 👈 Update this number as you watch more episodes
 
     const progress = ((currentEp - startEp) / (endEp - startEp)) * 100;
     const progressBar = document.getElementById('progress-bar');
@@ -99,7 +138,7 @@
     progressBar.textContent = `${Math.floor(progress)}%`;
     currentEpSpan.textContent = currentEp;
 
-    // Update Last Updated Timestamp in 12-hour EST format
+    // Last updated timestamp in 12-hour EST format
     function formatDateEST(date) {
       const options = {
         timeZone: 'America/New_York',
@@ -114,23 +153,29 @@
     }
 
     const footer = document.getElementById('last-updated');
-    const now = new Date();
-    footer.textContent = `Last updated: ${formatDateEST(now)}`;
-  </script>
+    footer.textContent = `Last updated: ${formatDateEST(new Date())}`;
 
+    // Audio controls
+    const audio = document.getElementById('wano-audio');
+    const playPauseBtn = document.getElementById('play-pause');
+    const volumeSlider = document.getElementById('volume');
 
-  <script>
-    const startEp = 1;
-    const endEp = 95;
-    const currentEp = 4; // 👈 CHANGE THIS when you make progress
+    playPauseBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playPauseBtn.textContent = 'Pause';
+      } else {
+        audio.pause();
+        playPauseBtn.textContent = 'Play';
+      }
+    });
 
-    const progress = ((currentEp - startEp) / (endEp - startEp)) * 100;
-    const progressBar = document.getElementById('progress-bar');
-    const currentEpSpan = document.getElementById('current-ep');
+    volumeSlider.addEventListener('input', () => {
+      audio.volume = volumeSlider.value;
+    });
 
-    progressBar.style.width = `${progress}%`;
-    progressBar.textContent = `${Math.floor(progress)}%`;
-    currentEpSpan.textContent = currentEp;
+    // Set default volume
+    audio.volume = 0.5;
   </script>
 
 </body>
