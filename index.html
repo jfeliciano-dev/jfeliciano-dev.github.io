@@ -58,9 +58,10 @@
     }
 
     .episode-info {
-      margin-top: 20px;
-      font-size: 1.2em;
+      margin-top: 10px;
+      font-size: 1em;
       text-align: center;
+      opacity: 0.8;
     }
 
     .audio-player {
@@ -102,13 +103,21 @@
   <!-- Whitebeard Image -->
   <img src="8644a017-77e7-4fcd-adef-79ba3025cab1.png" alt="Whitebeard - The One Piece is Real" class="wano-image" />
 
-  <!-- Progress Bar -->
+  <!-- Wano Progress Bar -->
   <div class="progress-container">
     <div class="progress-label">Watching Episode <span id="current-ep">4</span> of 95</div>
     <div class="progress-bar">
       <div class="progress-fill" id="progress-bar">0%</div>
     </div>
     <div class="episode-info">Wano Arc (One Pace): Episodes 1–95</div>
+  </div>
+
+  <!-- Total Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-label">Total One Pace Progress: Episode <span id="current-total-ep">0</span> of 460</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="total-progress-bar">0%</div>
+    </div>
   </div>
 
   <!-- Audio Player -->
@@ -125,18 +134,26 @@
   <footer id="last-updated">Last updated: </footer>
 
   <script>
-    // Episode progress
-    const startEp = 1;
-    const endEp = 95;
-    const currentEp = 6; // 👈 Update this number as you watch more episodes
+    // Wano progress
+    const wanoStartEp = 1;
+    const wanoEndEp = 95;
+    const currentWanoEp = 6; // 👈 Update this number only
 
-    const progress = ((currentEp - startEp) / (endEp - startEp)) * 100;
-    const progressBar = document.getElementById('progress-bar');
-    const currentEpSpan = document.getElementById('current-ep');
+    const wanoProgress = ((currentWanoEp - wanoStartEp) / (wanoEndEp - wanoStartEp)) * 100;
+    document.getElementById('progress-bar').style.width = `${wanoProgress}%`;
+    document.getElementById('progress-bar').textContent = `${Math.floor(wanoProgress)}%`;
+    document.getElementById('current-ep').textContent = currentWanoEp;
 
-    progressBar.style.width = `${progress}%`;
-    progressBar.textContent = `${Math.floor(progress)}%`;
-    currentEpSpan.textContent = currentEp;
+    // Total progress (auto-calculated from Wano progress)
+    const totalStartEp = 1;
+    const totalEndEp = 460;
+    const episodesBeforeWano = 389;
+    const currentTotalEp = episodesBeforeWano + currentWanoEp;
+
+    const totalProgress = ((currentTotalEp - totalStartEp) / (totalEndEp - totalStartEp)) * 100;
+    document.getElementById('total-progress-bar').style.width = `${totalProgress}%`;
+    document.getElementById('total-progress-bar').textContent = `${Math.floor(totalProgress)}%`;
+    document.getElementById('current-total-ep').textContent = currentTotalEp;
 
     // Last updated timestamp in 12-hour EST format
     function formatDateEST(date) {
@@ -152,8 +169,8 @@
       return new Intl.DateTimeFormat('en-US', options).format(date) + ' EST';
     }
 
-    const footer = document.getElementById('last-updated');
-    footer.textContent = 'Last updated: August 7, 2025, 11:24 AM EST';
+    document.getElementById('last-updated').textContent =
+      'Last updated: ' + formatDateEST(new Date());
 
     // Audio controls
     const audio = document.getElementById('wano-audio');
@@ -174,7 +191,6 @@
       audio.volume = volumeSlider.value;
     });
 
-    // Set default volume
     audio.volume = 0.5;
   </script>
 
