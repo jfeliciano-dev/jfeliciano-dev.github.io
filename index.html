@@ -28,6 +28,14 @@
       margin-bottom: 20px;
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(255,255,255,0.2);
+      cursor: pointer;
+      transition: filter 0.6s ease, opacity 0.6s ease;
+    }
+
+    /* Spoiler blur class */
+    .blurred {
+      filter: blur(12px);
+      opacity: 0.7;
     }
 
     .progress-container {
@@ -167,13 +175,15 @@
 	<div class="episode-entry"><strong>Episodes 6-7</strong> —  8/18/2025</div>
 	<div class="episode-entry"><strong>Episodes 8-9</strong> —  8/25/2025</div>
 	<div class="episode-entry"><strong>Episodes 10-11</strong> —  8/26/2025</div>
-    <!-- Future episodes can be added here -->
   </div>
 
   <h1>One Piece: Wano Arc Progress (One Pace)</h1>
 
-  <!-- Whitebeard Image -->
-  <img src="8644a017-77e7-4fcd-adef-79ba3025cab1.png" alt="Whitebeard - The One Piece is Real" class="wano-image" />
+  <!-- Whitebeard Image with spoiler blur -->
+  <img src="8644a017-77e7-4fcd-adef-79ba3025cab1.png" 
+       alt="Whitebeard - The One Piece is Real" 
+       class="wano-image blurred" 
+       id="wano-img" />
 
   <!-- Wano Progress Bar -->
   <div class="progress-container">
@@ -216,8 +226,7 @@
 	  } else {
 		document.getElementById("episodeSidebar").style.width = "300px";
 		isSideBarOpen = true;
-		
-		}
+	  }
     }
     function closeSidebar() {
 	  isSideBarOpen = false;
@@ -236,7 +245,7 @@
 
     // Total progress
     const totalStartEp = 1;
-    const totalEndEp = 460;
+    const totalEndEp = 500;
     const episodesBeforeWano = 389;
     const currentTotalEp = episodesBeforeWano + currentWanoEp;
 
@@ -281,6 +290,12 @@
     });
 
     audio.volume = 0.5;
+
+    // Spoiler blur toggle
+    const wanoImg = document.getElementById('wano-img');
+    wanoImg.addEventListener('click', () => {
+      wanoImg.classList.toggle('blurred');
+    });
   </script>
 
 </body>
