@@ -166,6 +166,7 @@
     <div class="episode-entry"><strong>Episodes 4–5</strong> — Watched 8/14/2025</div>
 	<div class="episode-entry"><strong>Episodes 6-7</strong> — Watched 8/18/2025</div>
 	<div class="episode-entry"><strong>Episodes 8-9</strong> — Watched 8/25/2025</div>
+	<div class="episode-entry"><strong>Episodes 10-11</strong> — Watched 8/26/2025</div>
     <!-- Future episodes can be added here -->
   </div>
 
@@ -206,18 +207,27 @@
   <footer id="last-updated">Last updated: </footer>
 
   <script>
+	var isSideBarOpen = false;
+	
     // Sidebar controls
     function openSidebar() {
-      document.getElementById("episodeSidebar").style.width = "300px";
+	  if (isSideBarOpen) {
+		closeSidebar(); 
+	  } else {
+		document.getElementById("episodeSidebar").style.width = "300px";
+		isSideBarOpen = true;
+		
+		}
     }
     function closeSidebar() {
+	  isSideBarOpen = false;
       document.getElementById("episodeSidebar").style.width = "0";
     }
 
     // Wano progress
     const wanoStartEp = 1;
     const wanoEndEp = 95;
-    const currentWanoEp = 10; // 👈 Update only this number
+    const currentWanoEp = 12; // 👈 Update only this number
 
     const wanoProgress = ((currentWanoEp - wanoStartEp) / (wanoEndEp - wanoStartEp)) * 100;
     document.getElementById('progress-bar').style.width = `${wanoProgress}%`;
