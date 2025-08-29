@@ -175,6 +175,9 @@
 	<div class="episode-entry"><strong>Episodes 6-7</strong> —  8/18/2025</div>
 	<div class="episode-entry"><strong>Episodes 8-9</strong> —  8/25/2025</div>
 	<div class="episode-entry"><strong>Episodes 10-11</strong> —  8/26/2025</div>
+	<div class="episode-entry"><strong>Episodes 12-14 </strong> —  8/27/2025</div>
+	<div class="episode-entry"><strong>Episodes 15-17 </strong> —  8/28/2025</div>
+	
   </div>
 
   <h1>One Piece: Wano Arc Progress (One Pace)</h1>
@@ -192,15 +195,6 @@
       <div class="progress-fill" id="progress-bar">0%</div>
     </div>
     <div class="episode-info">Wano Arc (One Pace): Episodes 1–95</div>
-  </div>
-
-  <!-- Total Progress Bar -->
-  <div class="progress-container">
-    <div class="progress-label">Total One Pace Progress: Episode <span id="current-total-ep">0</span> of 460</div>
-    <div class="progress-bar">
-      <div class="progress-fill" id="total-progress-bar">0%</div>
-    </div>
-    <div class="episode-info">All One Pace Episodes (Episodes 1–460)</div>
   </div>
 
   <!-- Audio Player -->
@@ -236,7 +230,7 @@
     // Wano progress
     const wanoStartEp = 1;
     const wanoEndEp = 95;
-    const currentWanoEp = 12; // 👈 Update only this number
+    const currentWanoEp = 18; // 👈 Update only this number
 
     const wanoProgress = ((currentWanoEp - wanoStartEp) / (wanoEndEp - wanoStartEp)) * 100;
     document.getElementById('progress-bar').style.width = `${wanoProgress}%`;
