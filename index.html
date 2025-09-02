@@ -180,7 +180,7 @@
 	<div class="episode-entry"><strong>Episodes 18-23</strong> —  8/29/2025</div>
 	<div class="episode-entry"><strong>Episodes 24-25</strong> —  8/30/2025</div>
 	<div class="episode-entry"><strong>Episode  26</strong> —  9/1/2025</div>
-	<div class="episode-entry"><strong>Episode  27-28</strong> —  9/1/2025</div>
+	<div class="episode-entry"><strong>Episode  27-28</strong> —  9/2/2025</div>
 	
   </div>
 
@@ -247,10 +247,10 @@
     const episodesBeforeWano = 389;
     const currentTotalEp = episodesBeforeWano + currentWanoEp;
 
-    const totalProgress = ((currentTotalEp - totalStartEp) / (totalEndEp - totalStartEp)) * 100;
-    document.getElementById('total-progress-bar').style.width = `${totalProgress}%`;
-    document.getElementById('total-progress-bar').textContent = `${Math.floor(totalProgress)}%`;
-    document.getElementById('current-total-ep').textContent = currentTotalEp;
+    <!-- const totalProgress = ((currentTotalEp - totalStartEp) / (totalEndEp - totalStartEp)) * 100; -->
+    <!-- document.getElementById('total-progress-bar').style.width = `${totalProgress}%`; -->
+    <!-- document.getElementById('total-progress-bar').textContent = `${Math.floor(totalProgress)}%`; -->
+    <!-- document.getElementById('current-total-ep').textContent = currentTotalEp; -->
 
     // Last updated timestamp in 12-hour EST format
     function formatDateEST(date) {
